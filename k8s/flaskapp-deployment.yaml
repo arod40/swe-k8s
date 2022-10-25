@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaskapp-server
+  labels:
+    app: flaskapp-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flaskapp-server
+  template:
+    metadata:
+      labels:
+        app: flaskapp-server
+    spec:
+      containers:
+      - name: flaskapp-server
+        image: flaskapp-server
+        ports:
+        - containerPort: 5000
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: pg-username
+        - name: POSTGRES_PASSSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: postgres-secret
+              key: pg-password
+        - name: POSTGRES_HOST
+          valueFrom: 
+            configMapKeyRef:
+              name: postgres-configmap
+              key: database_url
+        - name: POSTGRES_DB
+          valueFrom: 
+            configMapKeyRef:
+              name: postgres-configmap
+              key: database_name
