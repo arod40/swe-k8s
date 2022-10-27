@@ -5,7 +5,7 @@ metadata:
   labels:
     app: flaskapp-server
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: flaskapp-server
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: flaskapp-server
-        image: flaskapp-server
+        image: arod40/k8s-tuto-server
         ports:
         - containerPort: 5000
         env:
@@ -25,7 +25,7 @@ spec:
             secretKeyRef:
               name: postgres-secret
               key: pg-username
-        - name: POSTGRES_PASSSWORD
+        - name: POSTGRES_PASSWORD
           valueFrom: 
             secretKeyRef:
               name: postgres-secret

@@ -1,11 +1,28 @@
+import logging
+import os
+from dataclasses import dataclass
+
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
-from dataclasses import dataclass
-import os
 
 app = Flask(__name__)
 
+# LOGGING CONFIG
+
+
+@app.before_first_request
+def before_first_request():
+    app.logger.setLevel(logging.DEBUG)
+
+
+@app.before_request
+def log_request_info():
+    app.logger.debug("Headers: %s", request.headers)
+    app.logger.debug("Body: %s", request.get_data())
+
+
 # DB CONFIG
+
 db = SQLAlchemy()
 
 host = os.getenv("POSTGRES_HOST")
