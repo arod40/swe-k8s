@@ -44,7 +44,7 @@ Here is a publicly available description: [https://documenter.getpostman.com/vie
 
 Make a video of your screen showing your execution of the following tasks. For each task, it is described what needs to be shown in the video. I suggest to rehearse these tasks before recording the video, so that you can make sure what to expect in a success scenario. You can always delete the components created during practice using the `kubectl delete` command.
 
-1. Show the output of the command  
+0. Show the output of the command  
    ```console
    kubectl get all
    ```
@@ -57,10 +57,11 @@ Make a video of your screen showing your execution of the following tasks. For e
 
 1. Reproduce the system presented in the class demo. You should use the configuration files provided. This entails creating all the components in the APPROPRIATE ORDER 😉. Show your terminal while you setup the system. (Hint: Recall the `kubectl apply` command)
 
-2. Expose the port 8080 of the service `service/flaskapp-service` in order to connect to it from your local computer. To do that, you run:  
+2. Expose the API server service to be accessible by your local computer. To do that, you run:  
    ```console
-   kubectl port-forward service/flaskapp-service 8080:8080
+   minikube service flaskapp-service --url
    ```  
+   The output of this command is a url where the API is available. Note that if you run it in Windows, you get a different port every time, so you need to change it in the Postman collection I provide. I am unsure of the behavior in other OS, but it may be different.  
    Interact with the server API (call a couple of CRUD operations from Postman) and show which pod received each API call via their logs. The flask server is configured to log each API call. (Hint: Recall the `kubectl logs` command)
 
 3. Without killing the cluster and starting everything over, make the cluster scale the `flaskapp-server` deployment to three replicas instead of the existing two. Show the output of the command  
