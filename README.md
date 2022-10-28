@@ -26,9 +26,9 @@ Here is a publicly available description: [https://documenter.getpostman.com/vie
 
 # Cheat-sheet: minikube
 
-1. `minikube start`: Starts a local cluster and links minikube to it.
-2. `minikube stop`: Stops the local cluster
-3. `minikube status`: Checks the status of the local cluster
+1. `minikube start`: Starts a local cluster and links kubectl to it.
+2. `minikube stop`: Stops the local cluster.
+3. `minikube status`: Checks the status of the local cluster.
 
 # Cheat-sheet: kubectl
 
@@ -48,7 +48,7 @@ Make a video of your screen showing your execution of the following tasks. For e
    ```console
    kubectl get all
    ```
-   to make sure you deleted everything you created while practicing. Your output should look like this:  
+   to make sure you deleted everything you created while practicing. Your output should look similar to this:  
    ```console
    NAME                       TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
    service/kubernetes         ClusterIP   10.96.0.1        <none>        443/TCP          2d20h
